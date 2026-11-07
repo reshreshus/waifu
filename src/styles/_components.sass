@@ -1,0 +1,217 @@
+@use 'variables' as *
+@use 'mixins' as *
+
+// Sidebar
+
+.sidebar-header
+  padding: 20px
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.sidebar-logo
+  display: flex
+  align-items: center
+  gap: 10px
+  font-size: 18px
+  font-weight: 700
+  letter-spacing: -0.5px
+
+.sidebar-section
+  padding: 12px 14px
+
+.sidebar-section-title
+  padding: 8px 10px
+  color: $color-text-muted
+  font-size: 11px
+  font-weight: 700
+  text-transform: uppercase
+  letter-spacing: 1px
+
+.sidebar-item
+  width: 100%
+  display: flex
+  align-items: center
+  gap: 10px
+  padding: 9px 10px
+  border: 0
+  border-radius: $radius-sm
+  background: transparent
+  color: $color-text-secondary
+  text-align: left
+  cursor: pointer
+  transition: background $transition-fast, color $transition-fast
+
+  &:hover
+    background: $color-surface-hover
+    color: $color-text
+
+  &.active
+    background: $color-accent-soft
+    color: $color-accent
+
+.sidebar-footer
+  margin-top: auto
+  padding: 14px
+  border-top: 1px solid $color-border
+
+// Buttons
+
+.btn
+  @include button-reset
+  @include flex-center
+  gap: 8px
+  padding: 9px 14px
+  border-radius: $radius-sm
+  transition: all $transition-fast
+
+  &:hover
+    background: $color-surface-hover
+
+  &:focus-visible
+    @include focus-ring
+
+.btn-primary
+  background: $color-accent
+  color: #17121f
+  font-weight: 600
+
+  &:hover
+    background: $color-accent-hover
+
+.btn-icon
+  @include button-reset
+  @include flex-center
+  width: 36px
+  height: 36px
+  border-radius: $radius-sm
+  color: $color-text-muted
+
+  &:hover
+    background: $color-surface-hover
+    color: $color-text
+
+// Chat
+
+.welcome-screen
+  width: 100%
+  max-width: 700px
+  margin: auto
+  padding: 40px 24px
+  text-align: center
+
+.welcome-title
+  margin: 0 0 12px
+  font-size: clamp(26px, 4vw, 38px)
+  font-weight: 700
+  letter-spacing: -1.5px
+
+.welcome-description
+  color: $color-text-muted
+  font-size: 15px
+
+.message
+  display: flex
+  gap: 14px
+  margin-bottom: 28px
+
+.message-avatar
+  @include flex-center
+  flex: 0 0 34px
+  width: 34px
+  height: 34px
+  border-radius: 50%
+  background: $color-surface
+  color: $color-accent
+
+.message-body
+  flex: 1
+  min-width: 0
+
+.message-role
+  margin-bottom: 6px
+  font-weight: 600
+  font-size: 13px
+
+.message-content
+  color: $color-text-secondary
+  line-height: 1.75
+  overflow-wrap: anywhere
+
+.message-content pre
+  padding: 16px
+  overflow-x: auto
+  border: 1px solid $color-border
+  border-radius: $radius-md
+  background: #101014
+  font-family: $font-mono
+  font-size: 13px
+
+// Composer
+
+.composer
+  padding: 14px
+  border: 1px solid $color-border
+  border-radius: $radius-lg
+  background: $color-input
+  box-shadow: $shadow-panel
+  transition: border-color $transition-fast
+
+  &:focus-within
+    border-color: rgba(167, 139, 250, 0.65)
+
+.composer textarea
+  width: 100%
+  min-height: 48px
+  max-height: 220px
+  padding: 8px
+  border: 0
+  outline: 0
+  background: transparent
+  color: $color-text
+  resize: none
+
+  &::placeholder
+    color: $color-text-muted
+
+.composer-toolbar
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 12px
+  margin-top: 8px
+
+.model-select
+  max-width: 220px
+  padding: 8px 10px
+  border: 1px solid $color-border
+  border-radius: $radius-sm
+  background: $color-surface
+  color: $color-text-secondary
+
+// Model and suggestion cards
+
+.suggestion-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 10px
+  margin-top: 28px
+
+.suggestion-card
+  padding: 14px
+  border: 1px solid $color-border
+  border-radius: $radius-md
+  background: $color-surface
+  color: $color-text-secondary
+  text-align: left
+  cursor: pointer
+  transition: all $transition-fast
+
+  &:hover
+    border-color: $color-accent
+    background: $color-accent-soft
+    color: $color-text
+
+@media (max-width: 520px)
+  .suggestion-grid
+    grid-template-columns: 1fr

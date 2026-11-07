@@ -1,0 +1,47 @@
+@use 'variables' as *
+
+@mixin flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+@mixin flex-between
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+@mixin glass-panel
+  background: rgba(24, 24, 31, 0.85)
+  border: 1px solid $color-border
+  backdrop-filter: blur(16px)
+
+@mixin button-reset
+  border: 0
+  outline: 0
+  background: transparent
+  color: inherit
+  font: inherit
+  cursor: pointer
+
+@mixin text-muted
+  color: $color-text-muted
+  font-size: 13px
+
+@mixin custom-scrollbar
+  scrollbar-width: thin
+  scrollbar-color: #393943 transparent
+
+  &::-webkit-scrollbar
+    width: 6px
+
+  &::-webkit-scrollbar-track
+    background: transparent
+
+  &::-webkit-scrollbar-thumb
+    background: #393943
+    border-radius: 10px
+
+@mixin focus-ring
+  &:focus-visible
+    outline: 2px solid $color-accent
+    outline-offset: 3px
