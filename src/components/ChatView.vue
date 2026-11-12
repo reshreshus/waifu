@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, watch } from "vue";
+import { ref, nextTick, watch, onMounted } from "vue";
 import {
   Send,
   Sparkles,
@@ -10,12 +10,25 @@ import {
 
 import { useChatStore } from "../stores/chat";
 import ChatMessage from "./ChatMessage.vue";
-import { invoke } from "@tauri-apps/api/core"
+import { invoke } from '@tauri-apps/api/core'
 
 const chat = useChatStore();
 
 const input = ref("");
 const messagesContainer = ref<HTMLElement | null>(null);
+
+const hasOpenRouterKey = ref(false)
+const keyError = ref("")
+onMounted(async () => {
+  try {
+    hasOpenRouterKey.value = await invoke<boolean>('has_api_key', {
+      provider: 'openrouter'
+    })
+  } catch (error) {
+    keyError.value = String(error)
+  }
+})
+
 
 const suggestions = [
   {
@@ -65,16 +78,19 @@ async function sendMessage() {
   if (!chat.activeConversation) {
     chat.createConversation();
   }
+  if (!hasOpenRouterKey.value) {
+    alert("No API keys, add in the Settings")
+  }
   chat.addMessage("user", content);
   input.value = "";
   try {
     // Temporary API key input for the first prototype.
-    if (!apiKey.value) {
-      apiKey.value = prompt("Enter your OpenRouter API key") ?? "";
-      if (!apiKey.value) {
-        throw new Error("API key is required");
-      }
-    }
+    // if (!apiKey.value) {
+    //   apiKey.value = prompt("Enter your OpenRouter API key") ?? "";
+    //   if (!apiKey.value) {
+    //     throw new Error("API key is required");
+    //   }
+    // }
     const conversation = chat.activeConversation;
     if (!conversation) return;
     const messages = conversation.messages.map((message) => ({

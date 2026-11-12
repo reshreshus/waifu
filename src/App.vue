@@ -23,6 +23,7 @@ const sidebarVisible = ref(true);
       <PanelLeftOpen :size="18" />
     </button>
 
-    <ChatView />
+    <!-- <ChatView /> -->
+    <RouterView />
   </div>
 </template>

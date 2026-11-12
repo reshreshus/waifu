@@ -26,6 +26,10 @@ const groupedConversations = computed(() =>
     ),
   })),
 );
+
+// function openSettings() {
+
+// }
 </script>
 
 <template>
@@ -131,12 +135,13 @@ const groupedConversations = computed(() =>
 
     <!-- Footer -->
     <div class="mt-4 border-t border-white/[0.07] pt-3">
-      <button
-        class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-sm text-zinc-400 transition hover:bg-white/[0.05] hover:text-white"
+      <RouterLink
+        to="/settings"
+        class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-700"
       >
-        <Settings :size="16" />
-        Settings
-      </button>
+        <Settings :size="18" />
+        <span>Settings</span>
+      </RouterLink>
 
       <div class="mt-3 flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.025] p-3">
         <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-violet-500/30 to-indigo-500/30 text-sm font-semibold text-violet-200 ring-1 ring-violet-400/20">
